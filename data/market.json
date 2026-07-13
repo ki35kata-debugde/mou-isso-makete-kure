@@ -1,0 +1,10 @@
+{
+  "prices": {
+    "iron":     { "buy": 20,  "sell": 16, "label": "鉄" },
+    "wood":     { "buy": 12,  "sell": 9,  "label": "木材" },
+    "niter":    { "buy": 25,  "sell": 20, "label": "硝石" },
+    "herb":     { "buy": 15,  "sell": 12, "label": "薬草" },
+    "food_mat": { "buy": 18,  "sell": 14, "label": "兵糧" },
+    "med":      { "buy": 999, "sell": 30, "label": "回復薬" }
+  }
+}

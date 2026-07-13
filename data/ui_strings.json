@@ -1,0 +1,20 @@
+{
+  "sortie_confirm": "他の皇子の出立には来期になります。よろしいですか？",
+  "sortie_next_turn_hint": "出立は準備完了の翌ターンからです",
+  "transport_after_sortie_hint": "出立したターンは輸送できません。翌ターンから送れます",
+  "means_locked_cart": "兵糧ルート ノード1完遂で解禁",
+  "means_locked_boat": "兵糧ルート ノード2完遂で解禁",
+  "means_locked_horse": "牧場で馬を所有すると解禁",
+  "means_locked_wagon": "馬ルート ノード2完遂＋荷車＋馬で解禁",
+  "unlock_popup_title": "解禁のお知らせ",
+  "unlock_cart": "兵糧太が遠征中に荷車を発見！荷車が解禁されました。輸送で選べます。",
+  "unlock_boat": "兵糧太が遠征中に船を見かけた！船が解禁されました。河港ルートで使えます。",
+  "unlock_wagon": "馬車が解禁されました。馬と荷車を組み合わせた輸送が可能です。",
+  "unlock_ok": "OK",
+  "go_depart": "Go → 出発",
+  "go_done": "✓ 出発済み",
+  "go_wait_next": "翌ターンから輸送可",
+  "breakthrough_title": "戦況報告",
+  "breakthrough_body": "私の補給のおかげで一回戦を突破！\n（{prince}・ノード{node}）\n次のターンから新たな前線の依頼が届きます。",
+  "breakthrough_ok": "OK"
+}

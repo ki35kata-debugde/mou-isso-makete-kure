@@ -1,0 +1,35 @@
+{
+  "remind_after_turns": 3,
+  "prep": {
+    "food":   { "item": "food",    "label": "兵糧",    "qty": 5, "trust_reward": 3 },
+    "horse":  { "item": "horse",   "label": "★1馬",   "qty": 2, "trust_reward": 3 },
+    "siege":  { "item": "siege_w", "label": "衝車★1", "qty": 2, "trust_reward": 2 },
+    "weapon": { "item": "sword",   "label": "剣★1",   "qty": 2, "trust_reward": 2 }
+  },
+  "nodes": {
+    "food": {
+      "1": { "label": "兵糧×2", "items": [{ "id": "food", "label": "兵糧", "qty": 2 }], "deadline": 8, "carts": 2 },
+      "2": { "label": "兵糧×3", "items": [{ "id": "food", "label": "兵糧", "qty": 3 }], "deadline": 8, "carts": 3 },
+      "3": { "label": "兵糧×3・回復薬★1×2", "items": [{ "id": "food", "label": "兵糧", "qty": 3 }, { "id": "med", "label": "回復薬★1", "qty": 2 }], "deadline": 10, "carts": 4 },
+      "4": { "label": "兵糧×6", "items": [{ "id": "food", "label": "兵糧", "qty": 6 }], "deadline": 14, "carts": 6 }
+    },
+    "horse": {
+      "1": { "label": "★1以上馬×2頭", "items": [{ "id": "horse", "label": "★1馬", "qty": 2 }], "deadline": 8, "carts": 2 },
+      "2": { "label": "★2以上馬×3頭", "items": [{ "id": "horse", "label": "★2馬", "qty": 3 }], "deadline": 8, "carts": 3 },
+      "3": { "label": "★2馬×2・★3馬×2", "items": [{ "id": "horse", "label": "良馬", "qty": 4 }], "deadline": 10, "carts": 4 },
+      "4": { "label": "★3馬×4・★4馬×2", "items": [{ "id": "horse", "label": "名馬", "qty": 6 }], "deadline": 14, "carts": 6 }
+    },
+    "siege": {
+      "1": { "label": "衝車★1×2", "items": [{ "id": "siege_w", "label": "衝車★1", "qty": 2 }], "deadline": 8, "carts": 2 },
+      "2": { "label": "衝車★1×1・弩★2×2", "items": [{ "id": "siege_w", "label": "衝車★1", "qty": 1 }, { "id": "crossbow2", "label": "弩★2", "qty": 2 }], "deadline": 8, "carts": 3 },
+      "3": { "label": "弩★2×1・投石機★3×3", "items": [{ "id": "crossbow2", "label": "弩★2", "qty": 1 }, { "id": "catapult", "label": "投石機★3", "qty": 3 }], "deadline": 10, "carts": 4 },
+      "4": { "label": "投石機★3×2・砲弾★4×3・攻城塔★5×1", "items": [{ "id": "catapult", "label": "投石機★3", "qty": 2 }], "deadline": 14, "carts": 6 }
+    },
+    "weapon": {
+      "1": { "label": "剣★1×4", "items": [{ "id": "sword", "label": "剣★1", "qty": 4 }], "deadline": 8, "carts": 2 },
+      "2": { "label": "剣★1×2・弩★2×4", "items": [{ "id": "sword", "label": "剣★1", "qty": 2 }, { "id": "crossbow2", "label": "弩★2", "qty": 4 }], "deadline": 8, "carts": 3 },
+      "3": { "label": "弩★2×2・鋼剣★3×4・回復薬★1×2", "items": [{ "id": "crossbow2", "label": "弩★2", "qty": 2 }, { "id": "med", "label": "回復薬★1", "qty": 2 }], "deadline": 10, "carts": 4 },
+      "4": { "label": "剣★1×4・鋼剣★3×4・暗殺針★5×2", "items": [{ "id": "sword", "label": "剣★1", "qty": 4 }], "deadline": 14, "carts": 6 }
+    }
+  }
+}

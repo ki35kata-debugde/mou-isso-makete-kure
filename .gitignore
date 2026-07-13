@@ -1,0 +1,15 @@
+# 自動バックアップ（fix系スクリプトが生成）
+*.bak_*
+*.html.bak*
+
+# Node
+node_modules/
+package-lock.json
+package.json
+
+# OS
+Thumbs.db
+Desktop.ini
+
+# Claude Code local settings
+.claude/

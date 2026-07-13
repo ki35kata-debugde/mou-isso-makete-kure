@@ -1,0 +1,241 @@
+{
+  "_readme": "市場の設定ファイル。JSONはコメントを書けないため、キー名が「_」で始まる項目は説明文で、ゲーム側では読み込まれません（無視されます）。ただし baseBuy・shopStart・shopCapBase・shopMin・seasonStockDelta・seasonPriceDelta の『中身』のオブジェクトには _ キーを絶対に入れないでください。中身はすべて品目IDとして在庫・価格の計算に使われるため、説明用の文字列を混ぜると店在庫や価格がおかしくなります。編集後は sync_market.bat（または node data/repair_market_embed.js）を実行し、ブラウザで Ctrl+F5 してください。",
+  "adviceCostGold": 300,
+  "labels": {
+    "iron": "鉄",
+    "wood": "木材",
+    "niter": "硝石",
+    "herb": "薬草",
+    "food_mat": "兵糧",
+    "food": "兵糧",
+    "med": "回復薬",
+    "sword": "剣★1",
+    "siege_w": "衝車★1",
+    "gold": "金"
+  },
+  "_1_初期価格": "①初期価格：基準の買値(baseBuy)と売値(baseSell)。実際に画面へ出る買値は、この基準値に⑥季節ごとの固定価格差(seasonPriceDelta)を加減算して決まる（基準値そのままではない）。売値はその買値からsellToBuyRatioで自動計算される。",
+  "baseBuy": {
+    "iron": 20,
+    "wood": 12,
+    "niter": 25,
+    "herb": 15,
+    "food_mat": 18,
+    "med": 999,
+    "sword": 999,
+    "siege_w": 999
+  },
+  "baseSell": {
+    "iron": 18,
+    "wood": 11,
+    "niter": 22,
+    "herb": 13,
+    "food_mat": 16,
+    "med": 30,
+    "sword": 45,
+    "siege_w": 55
+  },
+  "_2_初期店在庫": "②初期店在庫：ゲーム開始時に店に並んでいる数量(shopStart)。",
+  "shopStart": {
+    "iron": 12,
+    "wood": 14,
+    "niter": 8,
+    "herb": 10,
+    "food_mat": 16,
+    "med": 0,
+    "sword": 0,
+    "siege_w": 0
+  },
+  "_3_価格の増減": "③価格の増減（旧方式・現在は未使用）：以前は店在庫÷上限(shopCapBase)の比率で買値がpriceMultMin〜priceMultMaxの間を変動していたが、季節ごとの固定価格差（⑥ seasonPriceDelta）方式に変更した。priceMultMin/priceMultMaxの値は互換のため残しているが参照されない。売値は現在も 買値 × sellToBuyRatio で自動計算する（必ず売値<買値になる比率にする）。",
+  "priceMultMin": 0.75,
+  "priceMultMax": 1.25,
+  "sellToBuyRatio": 0.9,
+  "_4_最大店在庫数": "④最大店在庫数(shopCapBase)：店に並べられる数量の上限。進言「増産」などで拡張されることがある。shopMinは下限で、季節による減少があってもこれより下がらない。",
+  "shopCapBase": {
+    "iron": 20,
+    "wood": 30,
+    "niter": 16,
+    "herb": 30,
+    "food_mat": 40,
+    "med": 6,
+    "sword": 0,
+    "siege_w": 0
+  },
+  "shopMin": {
+    "iron": 2,
+    "wood": 2,
+    "niter": 1,
+    "herb": 2,
+    "food_mat": 4,
+    "med": 0,
+    "sword": 0,
+    "siege_w": 0
+  },
+  "_5_季節による価格増減": "⑤季節による店在庫の増減(seasonStockDelta)：ターン開始時、季節ごとに品目の在庫が加算・減算される（マイナス可）。在庫が動くと③の比率も動くので、結果的に価格が上下する。季節番号は 0=春 1=夏 2=秋 3=冬。品目キーは baseBuy 等と同じ英小文字ID（例: 春=\"0\"にherb(薬草)+10、food_mat(兵糧)-3 など）。",
+  "seasonStockDelta": {
+    "0": {
+      "herb": 10,
+      "iron": 4,
+      "wood": 2,
+      "niter": 2,
+      "food_mat": -3
+    },
+    "1": {
+      "herb": 10,
+      "iron": 2,
+      "wood": 2,
+      "niter": 1,
+      "food_mat": -2
+    },
+    "2": {
+      "food_mat": 24,
+      "iron": 2,
+      "wood": 2,
+      "niter": 1,
+      "herb": -3
+    },
+    "3": {
+      "wood": 12,
+      "food_mat": -4,
+      "herb": -3
+    }
+  },
+  "_6_季節による固定価格差": "⑥季節ごとの固定価格差(seasonPriceDelta)：買値(baseBuy)にこの値をそのまま加減算する固定値。在庫比率とは無関係。季節番号は 0=春 1=夏 2=秋 3=冬。品目キーは iron/wood/niter/herb/food_mat のみ対応（med/sword/siege_wは別枠固定のため対象外）。マイナス可。売値はこの買値から sellToBuyRatio で自動計算される。中身のオブジェクトに _ キーを入れないこと（品目IDとして計算されるため）。まずは全品目0のひな形。実際の数値はここを直接編集する。",
+  "seasonPriceDelta": {
+    "0": {
+      "iron": 2,
+      "wood": 2,
+      "niter": 3,
+      "herb": -4,
+      "food_mat": 3
+    },
+    "1": {
+      "iron": -2,
+      "wood": 1,
+      "niter": -3,
+      "herb": -2,
+      "food_mat": 3
+    },
+    "2": {
+      "iron": 2,
+      "wood": 1,
+      "niter": 2,
+      "herb": 3,
+      "food_mat": -8
+    },
+    "3": {
+      "iron": -2,
+      "wood": -4,
+      "niter": -2,
+      "herb": 3,
+      "food_mat": 2
+    }
+  },
+  "_seasonRestock_注意": "seasonRestock は seasonStockDelta の複製で、同期スクリプト(repair_market_embed.js)が自動的に揃え直します。直接編集せず、必ず上の seasonStockDelta の方を編集してください。",
+  "seasonRestock": {
+    "0": {
+      "herb": 10,
+      "iron": 4,
+      "wood": 2,
+      "niter": 2,
+      "food_mat": -3
+    },
+    "1": {
+      "herb": 10,
+      "iron": 2,
+      "wood": 2,
+      "niter": 1,
+      "food_mat": -2
+    },
+    "2": {
+      "food_mat": 24,
+      "iron": 2,
+      "wood": 2,
+      "niter": 1,
+      "herb": -3
+    },
+    "3": {
+      "wood": 12,
+      "food_mat": -4,
+      "herb": -3
+    }
+  },
+  "ambientDelta": 0,
+  "_完成品": "完成品(剣・衝車・回復薬)は店では買えず売るだけ。unlockedByは解禁条件となる施設（工房=smith／薬房=pharmacy）。",
+  "productSell": {
+    "sword": {
+      "unlockedBy": "smith",
+      "buyable": false
+    },
+    "siege_w": {
+      "unlockedBy": "smith",
+      "buyable": false
+    },
+    "med": {
+      "unlockedBy": "pharmacy",
+      "buyable": false
+    }
+  },
+  "_馬売却額": "牧場の馬を売るときの★ランク別の金額。",
+  "horseSellByStar": {
+    "1": 80,
+    "2": 150,
+    "3": 280,
+    "4": 480,
+    "5": 800
+  },
+  "_市場娘のセリフ": "市場画面で表示される市場娘のセリフ集。ゲームの数値には影響しない（表示のみ）。",
+  "marketLines": [
+    {
+      "when": "autumn_food",
+      "text": "秋は兵糧がだぶついてます。買値、だいぶ下がりましたよ。"
+    },
+    {
+      "when": "spring_herb",
+      "text": "春ですもの、薬草が市場に出回り始めてます。"
+    },
+    {
+      "when": "summer_herb",
+      "text": "夏の薬草は質がいいんです。店にも積み増しました。"
+    },
+    {
+      "when": "winter_wood",
+      "text": "冬は木材の入荷が増えます。暖炉の季節ですから。"
+    },
+    {
+      "when": "low_stock",
+      "text": "在庫が薄い品は値上がり気味です。買いすぎ注意ですよ。"
+    },
+    {
+      "when": "high_stock",
+      "text": "店が満杯気味の品はお安くしてます。まとめ買い、いかが？"
+    },
+    {
+      "when": "product",
+      "text": "工房・薬房の完成品、買い取りますよ。解禁された品だけ並びます。"
+    },
+    {
+      "when": "generic",
+      "text": "相場は動いてます。括弧の中が前期との差です。"
+    },
+    {
+      "when": "generic",
+      "text": "同じ季節のうちの転売は損しやすいです。安い季節に仕入れて、足りない季節に出すとよいですよ。"
+    },
+    {
+      "when": "generic",
+      "text": "回復薬は当店では販売してません。売るだけです。"
+    },
+    {
+      "when": "generic",
+      "text": "兵糧は秋に仕入れが楽になります。覚えておいてください。"
+    },
+    {
+      "when": "generic",
+      "text": "王様への進言は300両かかります。工房と薬と馬で稼いでくださいね。"
+    },
+    {
+      "when": "generic",
+      "text": "秋は兵糧がだぶついて安くなりやすいです。冬から夏にかけて減ると値も戻りますよ。"
+    }
+  ]
+}

@@ -1,0 +1,623 @@
+{
+  "food": {
+    "demand": [
+      {
+        "id": "food_prep",
+        "priority": 100,
+        "when": {
+          "node": 0
+        },
+        "body": "兵糧三千。不足は一升たりとも許さぬ。\n【出立準備依頼】兵糧×5　輸送フェーズで手渡し可"
+      },
+      {
+        "id": "food_node_enter",
+        "priority": 100,
+        "when": {
+          "node_gte": 1,
+          "on_node_enter": true
+        },
+        "body": "到着した。思ったより速かった。\nこの先、兵糧が要る。送ってくれ。\n\n【依頼】{{order_label}}　納期：{{deadline}}ターン後"
+      },
+      {
+        "id": "food_order",
+        "priority": 90,
+        "when": {
+          "node_gte": 1
+        },
+        "body": "前線より。兵糧の補充を求める。\n\n【依頼】{{order_label}}　納期残：およそ{{deadline}}ターン"
+      },
+      {
+        "id": "food_remind",
+        "priority": 95,
+        "when": {
+          "node_gte": 1,
+          "miss_turns_gte": 3
+        },
+        "body": "……荷が届かぬ。兵の腹は空いている。\n催促する。今すぐ送れ。\n\n【催促】{{order_label}}"
+      }
+    ],
+    "personal": [
+      {
+        "id": "food_intro",
+        "priority": 100,
+        "when": {
+          "node": 0,
+          "once": true
+        },
+        "intro": "王子からです。今回は少し長い手紙ですよ、父上。",
+        "body": "先日の市価の報告、受け取った。そなたの読みは正確だ。\n\nひとつ聞く。出立前夜、兵に何を食わせれば士気が上がると思う。勝算より、飯の話が聞きたい。",
+        "choices": [
+          {
+            "icon": "🍚",
+            "text": "「白米に干し魚。腹が満ちれば足が動きます。数字より胃袋です」",
+            "trust": 2
+          },
+          {
+            "icon": "📊",
+            "text": "「現在庫から最適な配給量を計算します」と数字で返す",
+            "trust": 1
+          },
+          {
+            "icon": "😅",
+            "text": "「…また少し焦がしました」と関係のないことを書く",
+            "trust": 0
+          }
+        ]
+      },
+      {
+        "id": "food_land_1",
+        "priority": 100,
+        "when": {
+          "node": 1,
+          "on_node_enter": true
+        },
+        "intro": "到着の報告が来ましたよ。父上、良かったですね。",
+        "body": "東の平地に着いた。麦畑が広がっている。兵は粥をすすっている。\n前線の飯は不味い。やはりそなたの言う通りだった。",
+        "choices": [
+          {
+            "icon": "🐟",
+            "text": "「干し魚、多めに用意しておきます」",
+            "trust": 2
+          },
+          {
+            "icon": "📋",
+            "text": "「承知しました。兵糧の手配を急ぎます」",
+            "trust": 1
+          }
+        ]
+      },
+      {
+        "id": "food_trust_20",
+        "priority": 60,
+        "when": {
+          "trust_gte": 20,
+          "trust_lt": 40,
+          "once": true
+        },
+        "intro": "兵糧太から、少し柔らかい手紙です。",
+        "body": "兵と同じ粥を食っている。誰にも言うな。\n……そなたにだけは、書いておく。",
+        "choices": [
+          {
+            "icon": "🤝",
+            "text": "「数字にする役は私が引き受けます」",
+            "trust": 2
+          },
+          {
+            "icon": "🙏",
+            "text": "「お体を大切に」と返す",
+            "trust": 1
+          }
+        ]
+      },
+      {
+        "id": "food_chat",
+        "priority": 10,
+        "when": {
+          "fallback": true
+        },
+        "intro": "いつもの報告です。",
+        "body": "市の相場は安定している。次の荷の手配を頼む。\n以上だ。",
+        "choices": [
+          {
+            "icon": "📋",
+            "text": "「承知しました」",
+            "trust": 1
+          },
+          {
+            "icon": "📊",
+            "text": "在庫表を添えて返す",
+            "trust": 1
+          }
+        ]
+      }
+    ]
+  },
+  "horse": {
+    "demand": [
+      {
+        "id": "horse_prep",
+        "priority": 100,
+        "when": {
+          "node": 0
+        },
+        "body": "出立の前に、馬の身体にいいものを準備してほしい。\n【出立準備依頼】兵糧×4・回復薬×1　輸送フェーズで手渡し可"
+      },
+      {
+        "id": "horse_node_enter",
+        "priority": 100,
+        "when": {
+          "node_gte": 1,
+          "on_node_enter": true
+        },
+        "body": "着いた。草が良い。\n\n【依頼】{{order_label}}　納期：{{deadline}}ターン後"
+      },
+      {
+        "id": "horse_order",
+        "priority": 90,
+        "when": {
+          "node_gte": 1
+        },
+        "body": "馬が要る。\n\n【依頼】{{order_label}}"
+      },
+      {
+        "id": "horse_remind",
+        "priority": 95,
+        "when": {
+          "node_gte": 1,
+          "miss_turns_gte": 3
+        },
+        "body": "……馬が来ない。催促する。\n\n【催促】{{order_label}}"
+      }
+    ],
+    "personal": [
+      {
+        "id": "horse_intro",
+        "priority": 100,
+        "when": {
+          "node": 0,
+          "once": true
+        },
+        "intro": "…馬の王子からです。今回も短いですが、絵が描いてあります。",
+        "body": "今年は仔馬を何頭見た。栗毛の仔が一頭。良い目をしていた。\n［馬の絵：下手だが丁寧に描かれている］\n\n朝は冷える。羽織れ。",
+        "choices": [
+          {
+            "icon": "🎨",
+            "text": "上手な馬の絵を描き返して添える",
+            "trust": 2
+          },
+          {
+            "icon": "🧥",
+            "text": "「羽織ります。そちらも暖かく」",
+            "trust": 1
+          },
+          {
+            "icon": "🐴",
+            "text": "「栗毛の仔馬、素敵ですね」",
+            "trust": 1
+          }
+        ]
+      },
+      {
+        "id": "horse_land_1",
+        "priority": 100,
+        "when": {
+          "node": 1,
+          "on_node_enter": true
+        },
+        "intro": "北の牧場地帯から手紙です。",
+        "body": "草原が広い。風が冷たい。馬が喜んでいる。\nここは良い土地だ。",
+        "choices": [
+          {
+            "icon": "🌿",
+            "text": "「草の様子も教えてください」",
+            "trust": 2
+          },
+          {
+            "icon": "🐴",
+            "text": "「馬たちが元気で何よりです」",
+            "trust": 1
+          }
+        ]
+      },
+      {
+        "id": "horse_trust_20",
+        "priority": 60,
+        "when": {
+          "trust_gte": 20,
+          "trust_lt": 40,
+          "once": true
+        },
+        "intro": "騎馬次から、いつもより長い手紙です。",
+        "body": "……話せる相手が、あまりいない。\n馬の話なら、いくらでも書ける。",
+        "choices": [
+          {
+            "icon": "👂",
+            "text": "「いつでも聞きます」",
+            "trust": 2
+          },
+          {
+            "icon": "🎨",
+            "text": "絵を描き返す",
+            "trust": 2
+          }
+        ]
+      },
+      {
+        "id": "horse_foal_1",
+        "priority": 40,
+        "when": {
+          "serial": "foal",
+          "step": 0
+        },
+        "intro": "仔馬の話が書いてあります。",
+        "body": "仔馬になつかれた。栗毛の仔だ。足元に寄ってくる。\n……困る。かわいい。",
+        "choices": [
+          {
+            "icon": "🥰",
+            "text": "「大切にしてあげてください」",
+            "trust": 2
+          },
+          {
+            "icon": "🥕",
+            "text": "「ニンジン、送りましょうか」",
+            "trust": 2
+          }
+        ]
+      },
+      {
+        "id": "horse_foal_2",
+        "priority": 40,
+        "when": {
+          "serial": "foal",
+          "step": 1
+        },
+        "intro": "また仔馬の話です。",
+        "body": "なついた仔馬はニンジンが好きな様子だ。\n朝、ポケットに入れておくと、鼻を突っこんでくる。",
+        "choices": [
+          {
+            "icon": "🥕",
+            "text": "「ニンジン、多めに送ります」",
+            "trust": 2
+          },
+          {
+            "icon": "😄",
+            "text": "「それは愛されていますね」",
+            "trust": 1
+          }
+        ]
+      },
+      {
+        "id": "horse_foal_3",
+        "priority": 40,
+        "when": {
+          "serial": "foal",
+          "step": 2
+        },
+        "intro": "仔馬に名前の話……？",
+        "body": "ニンジン好きの仔馬に、名前をつけようと思う。\n……何か、良い名はあるか。",
+        "choices": [
+          {
+            "icon": "✨",
+            "text": "「『暁』はどうでしょう」",
+            "trust": 2
+          },
+          {
+            "icon": "🥕",
+            "text": "「正直に『ニンジン』は……」",
+            "trust": 1
+          },
+          {
+            "icon": "🎨",
+            "text": "名前入りの絵を描いて返す",
+            "trust": 2
+          }
+        ]
+      },
+      {
+        "id": "horse_chat",
+        "priority": 10,
+        "when": {
+          "fallback": true
+        },
+        "intro": "短い手紙です。",
+        "body": "馬は元気だ。以上。\n朝は冷える。羽織れ。",
+        "choices": [
+          {
+            "icon": "🐴",
+            "text": "「了解です」",
+            "trust": 1
+          },
+          {
+            "icon": "🎨",
+            "text": "小さな馬の絵を添える",
+            "trust": 1
+          }
+        ]
+      }
+    ]
+  },
+  "siege": {
+    "demand": [
+      {
+        "id": "siege_prep",
+        "priority": 100,
+        "when": {
+          "node": 0
+        },
+        "body": "衝車。良いのを。早く。\n【出立準備依頼】衝車★1×2　輸送フェーズで手渡し可"
+      },
+      {
+        "id": "siege_node_enter",
+        "priority": 100,
+        "when": {
+          "node_gte": 1,
+          "on_node_enter": true
+        },
+        "body": "陣を構えた。衝車の調子は良い。\n\n【依頼】{{order_label}}　納期：{{deadline}}ターン後"
+      },
+      {
+        "id": "siege_order",
+        "priority": 90,
+        "when": {
+          "node_gte": 1
+        },
+        "body": "攻城の準備が進んでいる。資材を送れ。\n\n【依頼】{{order_label}}"
+      },
+      {
+        "id": "siege_remind",
+        "priority": 95,
+        "when": {
+          "node_gte": 1,
+          "miss_turns_gte": 3
+        },
+        "body": "資材が来ない。図面だけでは城は落ちぬ。\n催促する。\n\n【催促】{{order_label}}"
+      }
+    ],
+    "personal": [
+      {
+        "id": "siege_intro",
+        "priority": 100,
+        "when": {
+          "node": 0,
+          "once": true
+        },
+        "intro": "攻三城からです。図面が同封されています。",
+        "body": "この衝車の図面を読め。改良点があれば書け。\nできるだけ早く。",
+        "choices": [
+          {
+            "icon": "📐",
+            "text": "明るい感想と改良案を返す",
+            "trust": 2
+          },
+          {
+            "icon": "🔧",
+            "text": "「製作、急ぎます」",
+            "trust": 1
+          }
+        ]
+      },
+      {
+        "id": "siege_land_1",
+        "priority": 100,
+        "when": {
+          "node": 1,
+          "on_node_enter": true
+        },
+        "intro": "西の城塞地帯から。",
+        "body": "城壁が見える。石組みが古い。衝車が活きる地形だ。\n前部衝角の改良、正解だった。",
+        "choices": [
+          {
+            "icon": "📐",
+            "text": "「次の図面、待っています！」",
+            "trust": 2
+          },
+          {
+            "icon": "🔩",
+            "text": "「資材の手配を続けます」",
+            "trust": 1
+          }
+        ]
+      },
+      {
+        "id": "siege_trust_20",
+        "priority": 60,
+        "when": {
+          "trust_gte": 20,
+          "trust_lt": 40,
+          "once": true
+        },
+        "intro": "少しだけ、人の気配がある手紙です。",
+        "body": "……周囲に打ち解けられぬ、と思っていた。\n図面の話なら、兵とも話せるようになった。礼を言う。",
+        "choices": [
+          {
+            "icon": "😊",
+            "text": "「良かったです！」",
+            "trust": 2
+          },
+          {
+            "icon": "📐",
+            "text": "「また一緒に考えましょう」",
+            "trust": 2
+          }
+        ]
+      },
+      {
+        "id": "siege_chat",
+        "priority": 10,
+        "when": {
+          "fallback": true
+        },
+        "intro": "短い図面メモです。",
+        "body": "今日の試射は可。以上。\n次の荷を待て。",
+        "choices": [
+          {
+            "icon": "📋",
+            "text": "「了解しました」",
+            "trust": 1
+          },
+          {
+            "icon": "🔧",
+            "text": "「準備を進めます」",
+            "trust": 1
+          }
+        ]
+      }
+    ]
+  },
+  "weapon": {
+    "demand": [
+      {
+        "id": "weapon_prep",
+        "priority": 100,
+        "when": {
+          "node": 0
+        },
+        "body": "出立の支度だ。剣を揃えろ。\n\n【出立準備依頼】剣★1×2　輸送フェーズで手渡し可"
+      },
+      {
+        "id": "weapon_node_enter",
+        "priority": 100,
+        "when": {
+          "node_gte": 1,
+          "on_node_enter": true
+        },
+        "body": "山道、余裕だった。まずここを押さえる。\n\n【依頼】{{order_label}}　納期：{{deadline}}ターン後\n（ノード{{node}}）"
+      },
+      {
+        "id": "weapon_order",
+        "priority": 90,
+        "when": {
+          "node_gte": 1
+        },
+        "body": "前線より。武器の補充を求める。\n\n【依頼】{{order_label}}　納期の目安：{{deadline}}ターン"
+      },
+      {
+        "id": "weapon_remind",
+        "priority": 95,
+        "when": {
+          "node_gte": 1,
+          "miss_turns_gte": 3
+        },
+        "body": "……荷が遅いぞ。催促だ。\n俺が一番早く終わらせるつもりが、補給待ちとはな。\n\n【催促】{{order_label}}"
+      }
+    ],
+    "personal": [
+      {
+        "id": "weapon_intro",
+        "priority": 100,
+        "when": {
+          "node": 0,
+          "once": true
+        },
+        "intro": "父上、また来ましたよ武刃四からの手紙。",
+        "body": "愛しの職人殿〜、武器の王子でございます。\nいや、そんな名前じゃないんだけどね。うちの薬房、評判いいって聞いたよ。期待してる。\n\nあと俺、山道は慣れてるから。一番早く終わらせてみせる。誰より先に。",
+        "choices": [
+          {
+            "icon": "⚡",
+            "text": "「早く終わらせれば誰も死なないと？ずいぶん自信家ですね」と切り返す",
+            "trust": 2
+          },
+          {
+            "icon": "💊",
+            "text": "「ご期待に沿えるよう精進します」と返す",
+            "trust": 1
+          },
+          {
+            "icon": "📋",
+            "text": "必要な薬の品目を確認して事務的に返す",
+            "trust": 0
+          }
+        ]
+      },
+      {
+        "id": "weapon_land_1",
+        "priority": 100,
+        "when": {
+          "node": 1,
+          "on_node_enter": true
+        },
+        "intro": "南の山道から、到着の手紙です。",
+        "body": "山道、思ったよりきついが景色はいい。狭い峠だ。少数精鋭向き。\nまずはここを拠点にする。約束通り、のんびりはしてないよ。",
+        "choices": [
+          {
+            "icon": "⛰️",
+            "text": "「無理せず、足も大事に」",
+            "trust": 2
+          },
+          {
+            "icon": "⚔️",
+            "text": "「拠点確保、お疲れさまです」",
+            "trust": 1
+          }
+        ]
+      },
+      {
+        "id": "weapon_trust_20",
+        "priority": 60,
+        "when": {
+          "trust_gte": 20,
+          "trust_lt": 40,
+          "once": true
+        },
+        "intro": "いつもの軽口……より、少し本音が混じっています。",
+        "body": "兄弟は戦に向いてない、とか言ってたけどさ。\n……まあ、俺が南部を片付ければ楽になるだろ。任せておけ。",
+        "choices": [
+          {
+            "icon": "💬",
+            "text": "「兄弟思いなんですね」と返す",
+            "trust": 2
+          },
+          {
+            "icon": "😏",
+            "text": "「大口、メモしておきます」",
+            "trust": 1
+          }
+        ]
+      },
+      {
+        "id": "weapon_trust_40",
+        "priority": 60,
+        "when": {
+          "trust_gte": 40,
+          "trust_lt": 60,
+          "once": true
+        },
+        "intro": "冗談のあいだに、真面目な一文があります。",
+        "body": "……なあ。俺が誰より早く終わらせれば、皆死なずに済む。そう思うか。\n答えは、次の手紙でいい。",
+        "choices": [
+          {
+            "icon": "🤔",
+            "text": "「速さだけが命ではないと思います」",
+            "trust": 2
+          },
+          {
+            "icon": "🤝",
+            "text": "「その覚悟、受け取りました」",
+            "trust": 2
+          }
+        ]
+      },
+      {
+        "id": "weapon_chat",
+        "priority": 10,
+        "when": {
+          "fallback": true
+        },
+        "intro": "軽口の手紙です。",
+        "body": "今日も元気だよ〜。薬房の評判、落ちてない？\n落ちてたら三倍請求していいからね。",
+        "choices": [
+          {
+            "icon": "💊",
+            "text": "「落ちてません。安心を」",
+            "trust": 1
+          },
+          {
+            "icon": "😤",
+            "text": "「三倍は聞き捨てなりません」",
+            "trust": 2
+          }
+        ]
+      }
+    ]
+  }
+}
