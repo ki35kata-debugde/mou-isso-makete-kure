@@ -11,6 +11,8 @@
     "med": "回復薬",
     "sword": "剣★1",
     "siege_w": "衝車★1",
+    "crossbow2": "弩★2",
+    "catapult": "投石機★3",
     "gold": "金"
   },
   "_1_初期価格": "①初期価格：基準の買値(baseBuy)と売値(baseSell)。実際に画面へ出る買値は、この基準値に⑥季節ごとの固定価格差(seasonPriceDelta)を加減算して決まる（基準値そのままではない）。売値はその買値からsellToBuyRatioで自動計算される。",
@@ -22,7 +24,9 @@
     "food_mat": 18,
     "med": 999,
     "sword": 999,
-    "siege_w": 999
+    "siege_w": 999,
+    "crossbow2": 999,
+    "catapult": 999
   },
   "baseSell": {
     "iron": 18,
@@ -32,7 +36,9 @@
     "food_mat": 16,
     "med": 30,
     "sword": 45,
-    "siege_w": 55
+    "siege_w": 55,
+    "crossbow2": 65,
+    "catapult": 90
   },
   "_2_初期店在庫": "②初期店在庫：ゲーム開始時に店に並んでいる数量(shopStart)。",
   "shopStart": {
@@ -172,6 +178,14 @@
     },
     "med": {
       "unlockedBy": "pharmacy",
+      "buyable": false
+    },
+    "crossbow2": {
+      "unlockedBy": "smith",
+      "buyable": false
+    },
+    "catapult": {
+      "unlockedBy": "smith",
       "buyable": false
     }
   },
