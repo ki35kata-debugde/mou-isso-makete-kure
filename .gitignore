@@ -11,5 +11,8 @@ package.json
 Thumbs.db
 Desktop.ini
 
+# バグ報告用スクリーンショット
+スクリーンショット *.png
+
 # Claude Code local settings
 .claude/
