@@ -78,29 +78,29 @@ function isTechUnlocked(item){
 }
 window.isTechUnlocked = isTechUnlocked;
 
+// ポップアップキュー（queueUnlock は他IIFE内のローカル関数で外から呼べないため直接push）
+function queuePopup(msg){
+  if(typeof gs==='undefined') return;
+  gs.pendingUnlocks = gs.pendingUnlocks || [];
+  if(gs.pendingUnlocks.indexOf(msg)<0) gs.pendingUnlocks.push(msg);
+}
 // 解禁チェック（初回到達時にポップアップ＋フラグ保存）
 function checkTechUnlocks(){
   if(typeof gs==='undefined') return;
   ensureNewItems();
   if(!gs.unlockedTech.crossbow2 && (clearedHas('siege',1)||clearedHas('weapon',1))){
     gs.unlockedTech.crossbow2 = true;
-    if(typeof queueUnlock==='function') queueUnlock('unlock_crossbow2','炉子が弩の図面を完成させた！工房で弩★2を生産できます。');
-    else if(typeof window.queueUnlock==='function') window.queueUnlock('unlock_crossbow2','炉子が弩の図面を完成させた！工房で弩★2を生産できます。');
+    queuePopup('炉子が弩の図面を完成させた！工房で弩★2を生産できます。');
   }
   if(!gs.unlockedTech.catapult && clearedHas('siege',2)){
     gs.unlockedTech.catapult = true;
-    if(typeof queueUnlock==='function') queueUnlock('unlock_catapult','投石機の図面が届いた！工房で投石機★3を生産できます。');
-    else if(typeof window.queueUnlock==='function') window.queueUnlock('unlock_catapult','投石機の図面が届いた！工房で投石機★3を生産できます。');
+    queuePopup('投石機の図面が届いた！工房で投石機★3を生産できます。');
   }
   // 結果フェーズ中に解禁された場合は即モーダル表示（次フェーズ持ち越し防止）
   try{
-    if(gs.phase==='result' && typeof showPendingUnlockModal==='function') showPendingUnlockModal();
+    if(gs.phase==='result' && typeof window.showPendingUnlockModal==='function') window.showPendingUnlockModal();
   }catch(e){}
   refreshSmithRows();
-}
-if(typeof UI_STRINGS!=='undefined'){
-  UI_STRINGS.unlock_crossbow2 = '炉子が弩の図面を完成させた！工房で弩★2を生産できます。';
-  UI_STRINGS.unlock_catapult = '投石機の図面が届いた！工房で投石機★3を生産できます。';
 }
 
 // ---- stockOf / takeStock ----
