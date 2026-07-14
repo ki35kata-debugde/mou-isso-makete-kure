@@ -1,6 +1,8 @@
 {
   "_readme": "市場の設定ファイル。JSONはコメントを書けないため、キー名が「_」で始まる項目は説明文で、ゲーム側では読み込まれません（無視されます）。ただし baseBuy・shopStart・shopCapBase・shopMin・seasonStockDelta・seasonPriceDelta の『中身』のオブジェクトには _ キーを絶対に入れないでください。中身はすべて品目IDとして在庫・価格の計算に使われるため、説明用の文字列を混ぜると店在庫や価格がおかしくなります。編集後は sync_market.bat（または node data/repair_market_embed.js）を実行し、ブラウザで Ctrl+F5 してください。",
   "adviceCostGold": 300,
+  "_adviceCost_注意": "進言の費用: 王子を「褒める」(commend)は adviceCostGold(300両)。それ以外の進言(増産・増員・市場強化・厩舎拡張・名馬探索)は adviceCostGoldOther(150両)。",
+  "adviceCostGoldOther": 150,
   "labels": {
     "iron": "鉄",
     "wood": "木材",
