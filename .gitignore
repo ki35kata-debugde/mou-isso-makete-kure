@@ -13,6 +13,7 @@ Desktop.ini
 
 # バグ報告用スクリーンショット
 スクリーンショット *.png
+IMG_*.jpg
 
 # Claude Code local settings
 .claude/

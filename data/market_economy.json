@@ -111,31 +111,31 @@
   "seasonPriceDelta": {
     "0": {
       "iron": 2,
-      "wood": 2,
+      "wood": -1,
       "niter": 3,
-      "herb": -4,
-      "food_mat": 3
+      "herb": -2,
+      "food_mat": 4
     },
     "1": {
       "iron": -2,
       "wood": 1,
       "niter": -3,
-      "herb": -2,
-      "food_mat": 3
+      "herb": -4,
+      "food_mat": 8
     },
     "2": {
       "iron": 2,
-      "wood": 1,
+      "wood": 4,
       "niter": 2,
-      "herb": 3,
-      "food_mat": -8
+      "herb": 2,
+      "food_mat": -10
     },
     "3": {
       "iron": -2,
       "wood": -4,
       "niter": -2,
-      "herb": 3,
-      "food_mat": 2
+      "herb": 4,
+      "food_mat": -2
     }
   },
   "_seasonRestock_注意": "seasonRestock は seasonStockDelta の複製で、同期スクリプト(repair_market_embed.js)が自動的に揃え直します。直接編集せず、必ず上の seasonStockDelta の方を編集してください。",
