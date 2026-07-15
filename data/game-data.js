@@ -56,13 +56,13 @@ window.GAME_DATA = {
     },
     "siege": {
       "item": "siege_w",
-      "label": "衝車★1",
+      "label": "衝車",
       "qty": 2,
       "trust_reward": 4
     },
     "weapon": {
       "item": "sword",
-      "label": "剣★1",
+      "label": "剣",
       "qty": 2,
       "trust_reward": 4
     }
@@ -70,12 +70,12 @@ window.GAME_DATA = {
   "node_orders": {
     "food": {
       "1": {
-        "label": "兵糧×2",
+        "label": "兵糧×4",
         "items": [
           {
             "id": "food",
             "label": "兵糧",
-            "qty": 2
+            "qty": 4
           }
         ],
         "deadline": 8,
@@ -83,29 +83,29 @@ window.GAME_DATA = {
         "trust_reward": 15
       },
       "2": {
-        "label": "兵糧×3",
+        "label": "兵糧×6",
         "items": [
           {
             "id": "food",
             "label": "兵糧",
-            "qty": 3
+            "qty": 6
           }
         ],
-        "deadline": 8,
+        "deadline": 9,
         "carts": 3,
         "trust_reward": 15
       },
       "3": {
-        "label": "兵糧×3・回復薬★1×2",
+        "label": "兵糧×4・回復薬×2",
         "items": [
           {
             "id": "food",
             "label": "兵糧",
-            "qty": 3
+            "qty": 4
           },
           {
             "id": "med",
-            "label": "回復薬★1",
+            "label": "回復薬",
             "qty": 2
           }
         ],
@@ -114,12 +114,12 @@ window.GAME_DATA = {
         "trust_reward": 15
       },
       "4": {
-        "label": "兵糧×6",
+        "label": "兵糧×12",
         "items": [
           {
             "id": "food",
             "label": "兵糧",
-            "qty": 6
+            "qty": 12
           }
         ],
         "deadline": 14,
@@ -129,12 +129,12 @@ window.GAME_DATA = {
     },
     "horse": {
       "1": {
-        "label": "★1以上馬×2頭",
+        "label": "★1以上馬×1頭",
         "items": [
           {
             "id": "horse",
             "label": "★1馬",
-            "qty": 2
+            "qty": 1
           }
         ],
         "deadline": 8,
@@ -142,12 +142,12 @@ window.GAME_DATA = {
         "trust_reward": 15
       },
       "2": {
-        "label": "★2以上馬×3頭",
+        "label": "★2以上馬×1頭",
         "items": [
           {
             "id": "horse",
             "label": "★2馬",
-            "qty": 3
+            "qty": 1
           }
         ],
         "deadline": 8,
@@ -155,12 +155,12 @@ window.GAME_DATA = {
         "trust_reward": 15
       },
       "3": {
-        "label": "★2馬×2・★3馬×2",
+        "label": "★3馬×1",
         "items": [
           {
             "id": "horse",
-            "label": "良馬",
-            "qty": 4
+            "label": "★3馬",
+            "qty": 1
           }
         ],
         "deadline": 10,
@@ -168,12 +168,12 @@ window.GAME_DATA = {
         "trust_reward": 15
       },
       "4": {
-        "label": "★3馬×4・★4馬×2",
+        "label": "★4馬×1",
         "items": [
           {
             "id": "horse",
-            "label": "名馬",
-            "qty": 6
+            "label": "★4馬",
+            "qty": 1
           }
         ],
         "deadline": 14,
@@ -183,11 +183,11 @@ window.GAME_DATA = {
     },
     "siege": {
       "1": {
-        "label": "衝車★1×2",
+        "label": "衝車×2",
         "items": [
           {
             "id": "siege_w",
-            "label": "衝車★1",
+            "label": "衝車",
             "qty": 2
           }
         ],
@@ -196,17 +196,12 @@ window.GAME_DATA = {
         "trust_reward": 15
       },
       "2": {
-        "label": "衝車★1×1・弩★2×2",
+        "label": "衝車×4",
         "items": [
           {
             "id": "siege_w",
-            "label": "衝車★1",
-            "qty": 1
-          },
-          {
-            "id": "crossbow2",
-            "label": "弩★2",
-            "qty": 2
+            "label": "衝車",
+            "qty": 4
           }
         ],
         "deadline": 8,
@@ -214,30 +209,30 @@ window.GAME_DATA = {
         "trust_reward": 15
       },
       "3": {
-        "label": "弩★2×1・投石機★3×3",
+        "label": "投石機×3",
         "items": [
           {
-            "id": "crossbow2",
-            "label": "弩★2",
-            "qty": 1
-          },
-          {
             "id": "catapult",
-            "label": "投石機★3",
+            "label": "投石機",
             "qty": 3
           }
         ],
-        "deadline": 10,
+        "deadline": 12,
         "carts": 4,
         "trust_reward": 15
       },
       "4": {
-        "label": "投石機★3×2・砲弾★4×3・攻城塔★5×1",
+        "label": "投石機×2・爆弾×1",
         "items": [
           {
             "id": "catapult",
-            "label": "投石機★3",
+            "label": "投石機",
             "qty": 2
+          },
+          {
+            "id": "bomb",
+            "label": "爆弾",
+            "qty": 1
           }
         ],
         "deadline": 14,
@@ -247,11 +242,11 @@ window.GAME_DATA = {
     },
     "weapon": {
       "1": {
-        "label": "剣★1×4",
+        "label": "剣×4",
         "items": [
           {
             "id": "sword",
-            "label": "剣★1",
+            "label": "剣",
             "qty": 4
           }
         ],
@@ -260,48 +255,53 @@ window.GAME_DATA = {
         "trust_reward": 15
       },
       "2": {
-        "label": "剣★1×2・弩★2×4",
+        "label": "剣×2・弩×4",
         "items": [
           {
             "id": "sword",
-            "label": "剣★1",
+            "label": "剣",
             "qty": 2
           },
           {
             "id": "crossbow2",
-            "label": "弩★2",
+            "label": "弩",
             "qty": 4
           }
         ],
-        "deadline": 8,
+        "deadline": 10,
         "carts": 3,
         "trust_reward": 15
       },
       "3": {
-        "label": "弩★2×2・鋼剣★3×4・回復薬★1×2",
+        "label": "弩×3・名剣×1",
         "items": [
           {
             "id": "crossbow2",
-            "label": "弩★2",
-            "qty": 2
+            "label": "弩",
+            "qty": 3
           },
           {
-            "id": "med",
-            "label": "回復薬★1",
-            "qty": 2
+            "id": "fine_sword",
+            "label": "名剣",
+            "qty": 1
           }
         ],
-        "deadline": 10,
+        "deadline": 12,
         "carts": 4,
         "trust_reward": 15
       },
       "4": {
-        "label": "剣★1×4・鋼剣★3×4・暗殺針★5×2",
+        "label": "名剣×2・投刀×1",
         "items": [
           {
-            "id": "sword",
-            "label": "剣★1",
-            "qty": 4
+            "id": "fine_sword",
+            "label": "名剣",
+            "qty": 2
+          },
+          {
+            "id": "throwing_blade",
+            "label": "投刀",
+            "qty": 1
           }
         ],
         "deadline": 14,
@@ -1157,7 +1157,7 @@ window.GAME_DATA = {
           "when": {
             "node": 0
           },
-          "body": "攻城槌の部材を整えよ。前方衝角の角度は図面どおりに。誤差は許さぬ。\n\n【出立準備依頼】衝車★1×2　輸送フェーズで手渡し可"
+          "body": "攻城槌の部材を整えよ。前方衝角の角度は図面どおりに。誤差は許さぬ。\n\n【出立準備依頼】衝車×2　輸送フェーズで手渡し可"
         },
         {
           "id": "siege_node_enter",
@@ -1537,7 +1537,7 @@ window.GAME_DATA = {
           "when": {
             "node": 0
           },
-          "body": "少数精鋭で行く。剣を二振り頼む。軽くて速いやつだ。薬はいらん。俺は怪我しない。\n\n【出立準備依頼】剣★1×2　輸送フェーズで手渡し可"
+          "body": "少数精鋭で行く。剣を二振り頼む。軽くて速いやつだ。薬はいらん。俺は怪我しない。\n\n【出立準備依頼】剣×2　輸送フェーズで手渡し可"
         },
         {
           "id": "weapon_node_enter",
@@ -1957,7 +1957,7 @@ window.GAME_DATA = {
     "sword": "剣",
     "siege_w": "衝車",
     "horse": "馬",
-    "crossbow2": "弩★2"
+    "crossbow2": "弩"
   },
   "ui_strings": {
     "sortie_confirm": "他の皇子の出立には来期になります。よろしいですか？",
@@ -1986,11 +1986,11 @@ window.GAME_DATA = {
       "deadline": 8
     },
     "siege": {
-      "item_label": "衝車★1×2",
+      "item_label": "衝車×2",
       "deadline": 8
     },
     "weapon": {
-      "item_label": "剣★1×4",
+      "item_label": "剣×4",
       "deadline": 8
     }
   }
