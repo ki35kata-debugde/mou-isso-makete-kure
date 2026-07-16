@@ -1,6 +1,8 @@
 const fs = require('fs');
 const vm = require('vm');
 const assert = require('assert');
+const path = require('path');
+const { execFileSync } = require('child_process');
 
 const html = fs.readFileSync('mou_isso_v0_6_1.html', 'utf8');
 const scripts = [...html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/gi)].map(m => m[1]);
@@ -77,4 +79,25 @@ assert.deepStrictEqual(gd.node_orders.weapon['3'],{label:'弩×3・名剣×1',it
 assert.deepStrictEqual(gd.node_orders.weapon['4'],{label:'名剣×2・投刀×1',items:[{id:'fine_sword',label:'名剣',qty:2},{id:'throwing_blade',label:'投刀',qty:1}],deadline:14,carts:6,trust_reward:20});
 assert.deepStrictEqual(gd.node_orders.siege['4'],{label:'投石機×2・爆弾×1',items:[{id:'catapult',label:'投石機',qty:2},{id:'bomb',label:'爆弾',qty:1}],deadline:14,carts:6,trust_reward:20});
 
-console.log('VERIFY_ITEM_EXPANSION_OK');
+async function browserButtonProbe(){
+  const edge='C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe';
+  const temp=path.resolve('.production-button-probe.html');
+  const probe=`<script>try{localStorage.clear();gs.inv={iron:5,wood:5,niter:0,herb:4,food:8};gs.stock={sword:0,siege_w:0,med:0};gs.prod={};gs.inProd={};gs.cleared={food:[],horse:[],siege:[],weapon:[]};gs.facility={smithStaff:0,pharmStaff:0,smithStaffMax:0,pharmStaffMax:0,marketLv:0,stableExtra:0};var clickProbe=function(id){var b=Array.from(document.querySelectorAll('button[onclick]')).find(function(x){return x.getAttribute('onclick')==="produce('"+id+"',1)";});if(!b)throw Error('button missing '+id);b.click();return gs.prod[id]||0;};document.body.setAttribute('data-production-probe',JSON.stringify({turn:gs.turn,inv:gs.inv,liveProduce:window.produce===produce,caps:[smithCap(),pharmCap()],sword:clickProbe('sword'),siege_w:clickProbe('siege_w'),med:clickProbe('med')}));}catch(e){document.body.setAttribute('data-production-probe-error',e.stack||String(e));}</script>`;
+  fs.writeFileSync(temp,html.replace('</body>',probe+'</body>'));
+  try{
+    const url='file:///'+temp.replace(/\\/g,'/');
+    let dom;
+    try{dom=execFileSync(edge,['--headless=new','--no-sandbox','--in-process-gpu','--use-angle=swiftshader','--disable-gpu-compositing','--disable-background-networking','--no-first-run','--dump-dom','--virtual-time-budget=1000',url],{encoding:'utf8',timeout:20000,maxBuffer:30*1024*1024});}
+    catch(e){dom=e.stdout||'';if(!dom.includes('data-production-probe'))throw e;}
+    const ok=dom.match(/data-production-probe="([^"]*)"/),bad=dom.match(/data-production-probe-error="([^"]*)"/);
+    return {value:ok?JSON.parse(ok[1].replace(/&quot;/g,'"').replace(/&amp;/g,'&')):null,error:bad&&bad[1],domLength:dom.length};
+  }finally{fs.rmSync(temp,{force:true});}
+}
+
+browserButtonProbe().then(browser=>{
+  console.log('BROWSER_BUTTON_PROBE='+JSON.stringify(browser));
+  assert.deepStrictEqual(browser.value&&{sword:browser.value.sword,siege_w:browser.value.siege_w,med:browser.value.med},{sword:1,siege_w:1,med:1},'real Edge button production failed');
+  assert.strictEqual(browser.value.liveProduce,true,'onclick did not resolve to final produce override');
+  assert.deepStrictEqual(browser.value.caps,[3,3],'fresh T1 facility caps changed');
+  console.log('VERIFY_ITEM_EXPANSION_OK');
+}).catch(e=>{console.error(e);process.exitCode=1;});
